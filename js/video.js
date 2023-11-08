@@ -1,4 +1,7 @@
 var video = document.getElementById("player1");
+var mute = document.getElementById("mute");
+var slider = document.querySelector("#slider");
+var volume = document.getElementById("volume");
 
 window.addEventListener("load", function () {
   console.log("Good job opening the window");
@@ -7,6 +10,7 @@ window.addEventListener("load", function () {
 document.querySelector("#play").addEventListener("click", function () {
   console.log("Play Video");
   video.play();
+  volume.textContent = slider.value + "%";
 });
 
 document.querySelector("#pause").addEventListener("click", function () {
@@ -40,12 +44,17 @@ document.querySelector("#skip").addEventListener("click", function () {
 
 document.querySelector("#mute").addEventListener("click", function () {
   video.muted = !video.muted;
+  if (video.muted) {
+    mute.textContent = "Unmute";
+  } else {
+    mute.textContent = "Mute";
+  }
 });
 
 document.querySelector("#slider").addEventListener("input", function () {
   var newVolume = document.querySelector("#slider").value / 100;
   video.volume = newVolume;
-  document.getElementById("volume").textContent = newVolume * 100 + "%";
+  volume.textContent = newVolume * 100 + "%";
 });
 
 document.querySelector("#vintage").addEventListener("click", function () {
